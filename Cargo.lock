@@ -766,6 +766,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "counter_program_pda"
+version = "0.1.0"
+dependencies = [
+ "anchor-lang",
+ "anchor-spl",
+ "solana-program 2.2.1",
+]
+
+[[package]]
 name = "cpufeatures"
 version = "0.2.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"

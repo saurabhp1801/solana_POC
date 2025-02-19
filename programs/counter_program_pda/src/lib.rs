@@ -26,7 +26,13 @@ pub struct Counter {
 
 #[derive(Accounts)]
 pub struct Initialize<'info> {
-    #[account(init, payer = user, space = 8 + 8)] // 8 bytes for discriminator, 8 for u64
+    #[account(
+        init,
+        payer = user,
+        space = 8 + 8, // 8 bytes for discriminator, 8 for u64
+        seeds = [b"counter".as_ref()],
+        bump
+    )]
     pub counter: Account<'info, Counter>,
     #[account(mut)]
     pub user: Signer<'info>,
@@ -35,6 +41,6 @@ pub struct Initialize<'info> {
 
 #[derive(Accounts)]
 pub struct Increment<'info> {
-    #[account(mut)]
+    #[account(mut, seeds = [b"counter".as_ref()], bump)]
     pub counter: Account<'info, Counter>,
 }
